@@ -5,13 +5,16 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx nodemon server.js",
-    "test": "node --experimental-vm-modules --no-warnings  node_modules/.bin/jest -i --verbose --watch"
+    "test": "node --experimental-vm-modules --no-warnings  node_modules/.bin/jest -i --verbose --watch",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.10",
