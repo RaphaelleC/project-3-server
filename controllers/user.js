@@ -16,7 +16,7 @@ async function login(req, res, next) {
   try {
     const user = await User.findOne({ email: req.body.email })
 
-    console.log(user)
+    // console.log(user)
 
     if (!user) {
       throw new NotValid('There was a problem logging in')
