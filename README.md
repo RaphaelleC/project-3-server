@@ -7,7 +7,7 @@ by [Drew Lamph](https://github.com/dlamph), [Theo Wyzgowski](https://github.com/
 MontVenture is an app for all nature enjoyers to publish their favourite spots for hiking, cycling, snowboarding and more.<br>
 This is the first project where I have had to create a server connected to a client. It was also the first time I used Git with a group (merging, resolving conflicts).
 
-![Homepage](./screenshots/Homepage.png)
+<img src="./screenshots/Homepage.png" alt="homepage" />
 
 ## Contents
 
@@ -15,10 +15,9 @@ This is the first project where I have had to create a server connected to a cli
 - [Approach](#approach)
 - [Technologies](#technologies-used)
 - [Responsibilities](#responsibilities)
-- [Key Learnings](#key-learnings)
 - [Achievements](#achievements)
 - [Challenges](#challenges)
-- [Conclusions](#conclusions)
+- [Key Learnings and Conclusion](#key-learnings-and-conclusion)
 
 ## Project Brief
 
@@ -27,8 +26,8 @@ This is the first project where I have had to create a server connected to a cli
 * **Consume your API with a separate front-end** built with React
 * **Be a complete product** which most likely means multiple relationships and CRUD functionality for at least a couple of models
 * **Implement thoughtful user stories/wireframes** that are significant enough to help you know which features are core MVP and which you can cut
-* **Have a visually impressive design** to kick your portfolio up a notch and have something to wow future clients & employers. **ALLOW** time for this.
-* **Be deployed online** so it's publicly accessible.
+* **Have a visually impressive design** to kick your portfolio up a notch and have something to wow future clients & employers. **ALLOW** time for this
+* **Be deployed online** so it's publicly accessible
 
 ## Approach
 
@@ -36,11 +35,13 @@ We started by designed a quick flowchart of our website. Being able to see how o
 
 Here are our flowcharts:
 
-![Flowchart_1](./screenshots/Flowchart_1.png)
-![Flowchart_2](./screenshots/Flowchart_2.png)
-![Flowchart_3](./screenshots/Flowchart_3.png)
+<img src="./screenshots/Flowchart_1.png" alt="flowchart 1" />
+<img src="./screenshots/Flowchart_2.png" alt="flowchart 2" />
+<img src="./screenshots/Flowchart_3.png" alt="flowchart 3" />
 
-We've kept a great communication during this project, be it via video calls or through slack. That way, everyone knew what to do and we were all helping each other when facing issues and debugging.
+We divided the workload into tasks that were first independent to each other, and we then brought them all together. We decided depending on if someone had any preference on a particular task, or felt more comfortable with something, or the opposite : if someone is not yet comfortable with a task or technology but want to take the opportunity to learn more about it during this project.
+
+We've kept a great communication during our project time, be it via video calls or through slack. That way, everyone knew what to do and we were all helping each other when facing issues and debugging.
 
 ## Technologies
 
@@ -72,7 +73,7 @@ We've kept a great communication during this project, be it via video calls or t
 I took care of seeding the base users with mongoose and express.
 
 User example :
-```javascript
+```js
 {
   email: 'raph@email',
   username: 'Raph',
@@ -83,7 +84,7 @@ User example :
 }
 ```
 The seeding function :
-```javascript
+```js
 async function seedDatabase() {
   try {
     await connectToDb()
@@ -95,12 +96,12 @@ async function seedDatabase() {
     const users = await User.create(userData)
     console.log(`${users.length} user(s) created !`)
     console.log(users)
-    
+
     (...)
 
     await mongoose.connection.close()
     console.log('Disconnected from mongo. All done !')
-    
+
   } catch (err) {
     console.log('Something went wrong :(')
     await mongoose.connection.close()
@@ -162,7 +163,7 @@ async function login(req, res, next) {
 I took care of the registration and login forms, using the `useHistory()` from `react-router-dom` to direct users to the login page after registration, and to the home page after they are logged in.
 
 For the register form :
-``` javascript
+```js
 const history = useHistory()
   const { formdata, formErrors, handleChange, setFormErrors } = useForm({
     username: '',
@@ -186,7 +187,7 @@ const history = useHistory()
 ```
 
 For the login form :
-```javascript
+```js
 const history = useHistory()
   const [isError, setIsError] = React.useState(false)
   const { formdata, handleChange } = useForm({
@@ -215,7 +216,7 @@ const history = useHistory()
 I also took care of the edit form of our app. We implemented it so our users can update the different activities they created, be it because they made a mistake when creating it or because it changed compared to their previous experience.<br>
 I have used `useHistory()` again to redirect the user to the activity page after editing it.
 
-```javascript
+```js
 React.useEffect(() => {
     const getData = async () => {
       try {
@@ -242,18 +243,11 @@ React.useEffect(() => {
 
 #### Styling
 
-![Register_page](./screenshots/Register.png)
+<img src="./screenshots/Register.png" alt="Register page" />
 
 Using the Bulma library and CSS, I styled the navigation bar, the register and login forms, as well as the activity pages. We wanted to keep the styling simple so it could better highlight the pictures of the activities.
 
-![Activity_and_navbar](./screenshots/Activity_and_navbar.png)
-
-## Key Learnings
-
-* Time management
-* Understanding and improvement of my Mongo, Express and React skils
-* Team work and communication
-* Github usage (commit, pull, merge, resolve conflicts, push)
+<img src="./screenshots/Activity_and_navbar.png" alt="activity and navbar" />
 
 ## Achievements
 
@@ -266,7 +260,12 @@ When we were working on the front end of our app, we realised that we needed to 
 
 There is a bug left on our app which we didn't have time to fix : when a user posts a comment, it is posted twice instead of once.
 
-## Conclusions
+## Key Learnings and Conclusion
+
+* Time management
+* Understanding and improvement of my Mongo, Express and React skils
+* Team work and communication
+* Github usage (commit, pull, merge, resolve conflicts, push)
 
 This project helped me better understand the relationships between the front end and the back end of an app. It also taught me that planning up ahead is really important : making changes on the back end after starting coding the front end is not always easy, we can end up losing time updating things that we thought were done.<br>
 It also showed me that time management and making a list of priorities is really important. One of our stretch goals was to implement Mapbox on our app so when a user creates an activity, he could locate it on a map and it would show the location of the activity on its page. We didn't implement that though, as we didn't have enough time left and preferred to focus on refactoring, testing and making sure our app was working properly.
