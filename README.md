@@ -41,7 +41,7 @@ Here are our flowcharts:
 
 We divided the workload into tasks that were first independent to each other, and we then brought them all together. We decided depending on if someone had any preference on a particular task, or felt more comfortable with something, or the opposite : if someone is not yet comfortable with a task or technology but want to take the opportunity to learn more about it during this project.
 
-We've kept a great communication during our project time, be it via video calls or through slack. That way, everyone knew what to do and we were all helping each other when facing issues and debugging.
+We've kept a great communication during our project time, be it via video calls or through Slack. That way, everyone knew what to do and we were all helping each other when facing issues and debugging.
 
 ## Technologies
 
@@ -70,7 +70,7 @@ We've kept a great communication during our project time, be it via video calls 
 
 #### User seeding
 
-I took care of seeding the base users with mongoose and express.
+I seeded the base users with mongoose and express.
 
 User example :
 ```js
@@ -109,6 +109,10 @@ async function seedDatabase() {
 }
 ```
 
+First, I need to connect to Mongo and remove all the data so there is no confilct when creating these users. Then I can create the users and seed them in the database newly built.
+
+I used a `console.log()` message for each step so that, if there is an error, I can see which step went wrong and debug it.
+
 #### User controllers
 
 I created the register and login controllers so our users could have an account and post their favourites destinations on our website.
@@ -124,6 +128,7 @@ async function register(req, res, next) {
   }
 }
 ```
+This controller takes the data from the user input and uses it to create and store a new user in our database.
 
 Login controller :
 ```javascript
@@ -153,6 +158,8 @@ async function login(req, res, next) {
   }
 }
 ```
+
+This controller first checks if the email address entered by the user exists in our database, and throws an error if not. It then verifies if the password is valid (if it matches the user email address), and also throws an error if not. When both these two informations are correct, a token is allocated to the user and they are now logged in our website.
 
 ### Front end
 
@@ -185,35 +192,34 @@ const history = useHistory()
     }
   }
 ```
+It waits for the user to enter data in the form. When they click the `Submit` button, the `handleSubmit` function takes effect and sends the data to the database. If there is a field missing, it will show an error to the user, indicating what and where the problem is.
 
 For the login form :
 ```js
 const history = useHistory()
-  const [isError, setIsError] = React.useState(false)
-  const { formdata, handleChange } = useForm({
-    email: '',
-    password: '',
-  })
+const [isError, setIsError] = React.useState(false)
+const { formdata, handleChange } = useForm({
+  email: '',
+  password: '',
+})
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+const handleSubmit = async (e) => {
+  e.preventDefault()
 
-    try {
-      const res = await loginUser(formdata)
-      setToken(res.data.token)
-      history.push('/')
-    } catch (err) {
-      setIsError(true)
-    }
+  try {
+    const res = await loginUser(formdata)
+    setToken(res.data.token)
+    history.push('/')
+  } catch (err) {
+    setIsError(true)
   }
-  const handleFocus = () => {
-    setIsError(false)
-  }
+}
 ```
+The login form takes the email and password the user enter, send it to the back end to check that the data is correct, then set up a token for the user that is now logged in. If the email or password is incorrect, it will show an error for the user to see.
 
 ##### Edit activity
 
-I also took care of the edit form of our app. We implemented it so our users can update the different activities they created, be it because they made a mistake when creating it or because it changed compared to their previous experience.<br>
+I also took created the edit form of our app. We implemented it so our users can update the different activities they created, be it because they made a mistake when creating it or because it changed compared to their previous experience.<br>
 I have used `useHistory()` again to redirect the user to the activity page after editing it.
 
 ```js
@@ -240,6 +246,7 @@ React.useEffect(() => {
     }
   }
 ```
+This form get the data that has been stored in our database when the activity was created to show it on the form, so the user can simply modify what he wants. When the modifications are done, the new data is sent to the database and we redirect the user to the activity page so he can checks that the activity has the correct description, picture, location, etc. If there are any errors, it will show them to the user.
 
 #### Styling
 
@@ -251,8 +258,7 @@ Using the Bulma library and CSS, I styled the navigation bar, the register and l
 
 ## Achievements
 
-* Creation of my first full stack app
-* Successful usage of the new technologies I learnt during the course
+Creating MontVenture has been quite a challenge but also very rewarding. I'm very proud of this project as my first full stack app, and with how I handled the multiple forms I have created in particular. I feel like I really understand how the back end and the database connect to the front end, which is a key in building these forms that either send data or get data to the database via the back end.
 
 ## Challenges
 
@@ -262,9 +268,9 @@ There is a bug left on our app which we didn't have time to fix : when a user po
 
 ## Key Learnings and Conclusion
 
-* Time management
-* Understanding and improvement of my Mongo, Express and React skils
-* Team work and communication
+* Time management : this project help me put into perspective how much time certain tasks need to be complete, and thus confirmed that planning up ahead and trying to estimate the time allocated for each step is important.
+* Improvement of my Mongo, Express and React skills : to put these three technologies into practice in a concrete project helped me understand how they work together, how to link them to each other to create a functional app.
+* Team work and communication : as in my previous project, we kept a great communication between us, which I felt was very important because it helped us managing our time and making clear who is working on which task, if we're struggling with it or not. We've been able to help and support each other well.
 * Github usage (commit, pull, merge, resolve conflicts, push)
 
 This project helped me better understand the relationships between the front end and the back end of an app. It also taught me that planning up ahead is really important : making changes on the back end after starting coding the front end is not always easy, we can end up losing time updating things that we thought were done.<br>
