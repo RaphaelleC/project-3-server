@@ -264,8 +264,6 @@ Creating MontVenture has been quite a challenge but also very rewarding. I'm ver
 
 When we were working on the front end of our app, we realised that we needed to modify our activities data. We needed to change what we called `name` by `activityName` for more clarity. But in doing so, we also had to adjust our front end files accordingly, which took a bit of time. This really made us aware that a little change in the back end implies that we have to spend more time doing changes, time that could be used elsewhere. We will pay more attention to this in future projects.<br>
 
-There is a bug left on our app which we didn't have time to fix : when a user posts a comment, it is posted twice instead of once.
-
 ## Key Learnings and Conclusion
 
 * Time management : this project help me put into perspective how much time certain tasks need to be complete, and thus confirmed that planning up ahead and trying to estimate the time allocated for each step is important.
@@ -275,3 +273,7 @@ There is a bug left on our app which we didn't have time to fix : when a user po
 
 This project helped me better understand the relationships between the front end and the back end of an app. It also taught me that planning up ahead is really important : making changes on the back end after starting coding the front end is not always easy, we can end up losing time updating things that we thought were done.<br>
 It also showed me that time management and making a list of priorities is really important. One of our stretch goals was to implement Mapbox on our app so when a user creates an activity, he could locate it on a map and it would show the location of the activity on its page. We didn't implement that though, as we didn't have enough time left and preferred to focus on refactoring, testing and making sure our app was working properly.
+
+## Bugs
+
+There is a bug left on our app which we didn't have time to fix : when a user posts a comment, it is posted twice instead of once.
